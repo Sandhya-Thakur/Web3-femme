@@ -2,7 +2,9 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { client, challenge, authenticate } from '../auth/auth'
-import About from './components/component1'
+import About from './components/Heroimage'
+import After from './components/component2'
+
 declare var window: any
 export default function Home() {
   /* local state variables to hold user's address and access token */
@@ -54,8 +56,8 @@ export default function Home() {
   }
   return (   
 <div>
-  <div><About></About></div>
-      { /* if the user has not yet connected their wallet, show a connect button */ }
+{ /* if the user has not yet connected their wallet, show a connect button */ }
+      
       {
         !address && <button onClick={connect}>Connect Wallet</button>
       }
@@ -64,13 +66,16 @@ export default function Home() {
         address && !token && (
           
           <div onClick={login}>
-             <button className="button-72" role="button">log in</button>
+             <button className="button-72" role="button">Connect Wallet</button>
+             
           </div>
         )
       }
       { /* once the user has authenticated, show them a success message */ }
       {
-        address && token && <div><h2>Hello</h2></div>
+        address && token && <div>
+          <After></After>
+        </div>
       }
       
     </div>
