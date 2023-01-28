@@ -2,9 +2,7 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { client, challenge, authenticate } from '../auth/auth'
-import About from './components/Heroimage'
-import After from './components/component2'
-
+import IndexHome from './api/apiIndex'
 declare var window: any
 export default function Home() {
   /* local state variables to hold user's address and access token */
@@ -54,30 +52,41 @@ export default function Home() {
       console.log('Error signing in: ', err)
     }
   }
-  return (   
-<div>
-{ /* if the user has not yet connected their wallet, show a connect button */ }
-      
+  return ( <div>
+    { /* if the user has not yet connected their wallet, show a connect button */ }
       {
-        !address && <button onClick={connect}>Connect Wallet</button>
+        !address && <button className="button-72" role="button" onClick={connect}>Connect Wallet</button>
       }
-      { /* if the user has connected their wallet but has not yet authenticated, show them a login button */ }
+      
+     { /* if the user has connected their wallet but has not yet authenticated, show them a login button */ }
+     
       {
         address && !token && (
-          
           <div onClick={login}>
-             <button className="button-72" role="button">Connect Wallet</button>
+             <button className="button-72" role="button">log in</button>
              
           </div>
+          
         )
       }
       { /* once the user has authenticated, show them a success message */ }
       {
         address && token && <div>
-          <After></After>
+      
         </div>
       }
+      <div className="hero-image">
+        <div className = "foreground ">
+          <IndexHome></IndexHome>
+
+        </div>
+          
+      </div>
+
       
-    </div>
-  )
+      
+  </div> ) 
+
+      
+  
 }
